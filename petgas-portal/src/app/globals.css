@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Petgas Color Palette */
+  --petgas-green-primary: #00A859; /* rgb(0, 168, 89) */
+  --petgas-green-dark: #005850;    /* rgb(0, 88, 80) */
+  --petgas-blue-primary: #007bff;   /* rgb(0, 123, 255) */
+  --petgas-gray-light: #f8f9fa;
+  --petgas-gray-medium: #6c757d;
+  --petgas-gray-dark: #343a40;
+  --petgas-white: #ffffff;
+  --petgas-black: #000000;
+
+  /* Default theme variables (can be overridden by dark theme) */
+  --background: var(--petgas-white);
+  --foreground: var(--petgas-gray-dark);
+  --primary-accent: var(--petgas-blue-primary);
+  --secondary-accent: var(--petgas-green-primary);
+
+  --text-color: #1f2937; /* Default text-gray-800 */
+  --text-color-muted: #6b7280; /* Default text-gray-500 */
+  --heading-color: #111827; /* Default text-gray-900 */
+
+  --button-primary-bg: var(--petgas-blue-primary);
+  --button-primary-text: var(--petgas-white);
+  --button-primary-hover-bg: #0069d9; /* Darker blue */
+
+  --button-secondary-bg: var(--petgas-green-primary);
+  --button-secondary-text: var(--petgas-white);
+  --button-secondary-hover-bg: #008a48; /* Darker green */
+  
+  --input-border-color: #D1D5DB; /* gray-300 */
+  --input-focus-border-color: var(--petgas-blue-primary);
+  --input-focus-ring-color: var(--petgas-blue-primary);
+}
+
+/* Basic dark theme setup if needed, though admin panel has its own */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--petgas-gray-dark);
+    --foreground: var(--petgas-gray-light);
+    --primary-accent: var(--petgas-blue-primary);
+    --secondary-accent: var(--petgas-green-primary);
+  }
+} */
+
+body {
+  color: var(--text-color);
+  background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+/* Custom component styles can be added here if needed */
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 rounded-md font-medium text-white transition-colors duration-150 ease-in-out;
+    background-color: var(--button-primary-bg);
+    &:hover {
+      background-color: var(--button-primary-hover-bg);
+    }
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+    }
+    &:focus-visible { /* More specific focus styling */
+        @apply outline-none ring-2 ring-offset-2 ring-[var(--button-primary-bg)];
+    }
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 rounded-md font-medium text-white transition-colors duration-150 ease-in-out;
+    background-color: var(--button-secondary-bg);
+    &:hover {
+      background-color: var(--button-secondary-hover-bg);
+    }
+     &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+    }
+    &:focus-visible {
+        @apply outline-none ring-2 ring-offset-2 ring-[var(--button-secondary-bg)];
+    }
+  }
+  
+  .input-styled {
+    @apply block w-full appearance-none rounded-md border px-3 py-3 sm:text-sm transition-colors duration-150 ease-in-out;
+    color: var(--text-color); /* Ensure text color is from variable */
+    background-color: var(--petgas-white); /* Ensure bg is white for inputs */
+    border-color: var(--input-border-color);
+    &::placeholder {
+        color: var(--text-color-muted);
+    }
+    &:focus {
+      outline: none;
+      border-color: var(--input-focus-border-color);
+      box-shadow: 0 0 0 2px var(--input-focus-ring-color); 
+    }
+  }
+}
